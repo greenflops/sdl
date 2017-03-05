@@ -1,0 +1,5 @@
+- SDLImplementationGuideline.docx is a software architecture design doc
+- pack.sh is a script to build a deliverable sdl_ProductID.tgz
+- src directory contains code of client and server with kafka.tgz libraries
+- setup.sh is a script to build and run the sdl_server and launch a test with set() and get() procedures.
+- ted OK with host machine with Docker version 1.12.3, build 6b644ec and openjdk version "1.8.0_121"
