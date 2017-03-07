@@ -93,42 +93,42 @@ public class SDLActor {
 		GUIProducer.set(GUIPrimaryKey, row);
         	System.out.println(ANSI_BLUE + "Sent GUI UI_NS_VNF_ORCHESTRATION table with primaryKey=\"0\" and partial row value=" + row + ANSI_RESET);
         
-                row = "{\"status\":\"RUNNING\",\"startDate\":"+ System.currentTimeMillis() + "}";
+                row = "{\"microserviceId1\":\""+microserviceId1+"\",\"status\":\"RUNNING\",\"startDate\":"+ System.currentTimeMillis() + "}";
 		SwarmProducer.set(microserviceId1, row);
                 System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId1 + " and partial row value=" + row + ANSI_RESET);
 
 		try{Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
-                row = "{\"status\":\"STOPPED\"}";
+                row = "{\"microserviceId1\":\""+microserviceId1+"\",\"status\":\"STOPPED\"}";
 		SwarmProducer.set(microserviceId1, row);
                 System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId1 + " and partial row value=" + row + ANSI_RESET);
-                row = "{\"status\":\"RUNNING\",\"startDate\":"+ System.currentTimeMillis() + "}";
+                row = "{\"microserviceId2\":\""+microserviceId2+"\",\"status\":\"RUNNING\",\"startDate\":"+ System.currentTimeMillis() + "}";
 		SwarmProducer.set(microserviceId2, row);
                 System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId2 + " and partial row value=" + row + ANSI_RESET);
 
 		try{Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
-                row = "{\"microServiceOrchProvider\":\"Swarm\",\"microServiceName\":\"BBSC\",\"sourcePortNo\":51345,\"chainingPortRange\":1024,\"sourceIpAddress\":\"172.1.0.15\",\"status\":\"NOT_CREATED\",\"deployedServer\":\"FEU\",\"startDate\":"+ System.currentTimeMillis() + "}";
+                row = "{\"microserviceId1\":\""+microserviceId1+"\",\"microServiceOrchProvider\":\"Swarm\",\"microServiceName\":\"BBSC\",\"sourcePortNo\":51345,\"chainingPortRange\":1024,\"sourceIpAddress\":\"172.1.0.15\",\"status\":\"NOT_CREATED\",\"deployedServer\":\"FEU\",\"startDate\":"+ System.currentTimeMillis() + "}";
 		SwarmProducer.set(microserviceId1, row);
                 System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId1 + " and full row value=" + row + ANSI_RESET);
 
 		try{Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
-                row = "{\"status\":\"CREATED\"}";
+                row = "{\"microserviceId1\":\""+microserviceId1+"\",\"status\":\"CREATED\"}";
 		SwarmProducer.set(microserviceId1, row);
                 System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId1 + " and partial row value=" + row + ANSI_RESET);
 
                	try{Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
-                row = "{\"status\":\"RUNNING\",\"startDate\":"+ System.currentTimeMillis() + "}";
+                row = "{\"microserviceId1\":\""+microserviceId1+"\",\"status\":\"RUNNING\",\"startDate\":"+ System.currentTimeMillis() + "}";
 		SwarmProducer.set(microserviceId1, row);
                 System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId1 + " and partial row value=" + row + ANSI_RESET);
-                row = "{\"status\":\"STOPPED\"}";
+                row = "{\"microserviceId2\":\""+microserviceId2+"\",\"status\":\"STOPPED\"}";
 		SwarmProducer.set(microserviceId2, row);
                 System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId2 + " and partial row value=" + row + ANSI_RESET);
 
 
                	try{Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
-                row = "{\"status\":\"STOPPED\"}";
+                row = "{\"microserviceId1\":\""+microserviceId1+"\",\"status\":\"STOPPED\"}";
 		SwarmProducer.set(microserviceId1, row);
                 System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId1 + " and partial row value=" + row + ANSI_RESET);
-                row = "{\"status\":\"RUNNING\",\"startDate\":"+ System.currentTimeMillis() + "}";
+                row = "{\"microserviceId2\":\""+microserviceId2+"\",\"status\":\"RUNNING\",\"startDate\":"+ System.currentTimeMillis() + "}";
 		SwarmProducer.set(microserviceId2, row);
                 System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId2 + " and partial row value=" + row + ANSI_RESET);	
 		}
