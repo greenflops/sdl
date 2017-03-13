@@ -24,7 +24,12 @@ public class SDLActor {
 	// Tables Topics
 	private String UI_NS_VNF_ORCHESTRATION = "UI_NS_VNF_ORCHESTRATION";
 	private String UI_NS_VNC_SETTING = "UI_NS_VNC_SETTING";
+	private String UI_SS_TRAFFIC_PROFILE = "UI_SS_TRAFFIC_PROFILE";
+	private String UI_CONTROL_SCREEN_SETTINGS = "UI_CONTROL_SCREEN_SETTINGS";
+	private String CELL_VM_INFO = "CELL_VM_INFO";
+	private String RESOURCE_INFO = "RESOURCE_INFO";
 	private String MICRO_SERVICES_INFO = "MICRO_SERVICES_INFO";
+
 
 	// Tables row primaryKey
 	private String GUIPrimaryKey = "0";
