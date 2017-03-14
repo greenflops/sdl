@@ -20,6 +20,10 @@ public class SDLActor {
 
 	// Server address
 	private String address;
+	// Test duration
+	private long testDuration;
+	// Test topic
+	private String topic;
 
 	// Tables Topics
 	private String UI_NS_VNF_ORCHESTRATION = "UI_NS_VNF_ORCHESTRATION";
@@ -36,19 +40,18 @@ public class SDLActor {
 	private String microserviceId1 = "a00000000000001a";
         private String microserviceId2 = "b00000000000001b";
 
-	// Test duration
-	private long testDuration;
-
     	public static void main(String[] args) throws Exception {
 		SDLActor sdl = new SDLActor();
         	if(args.length != 3) {
-            		System.out.println("enter [brockerIPAddress | localhost] [set | get] [durationInSeconds | -1 for infinite]");
+            		System.out.println("enter [brockerIPAddress | localhost] [set | get] [durationInSeconds | -1 for infinite] [TOPIC | All for all topics]");
             		return;
         	}
 
         	sdl.address = args[0].toString() + ":9092";
 
 		sdl.testDuration = 1000 * Long.parseLong(args[2]);
+
+		sdl.topic = args[3].toString();
 
 		switch (args[1].toString()) {
 			case "set":
@@ -162,7 +165,7 @@ public class SDLActor {
 
 	void RESOURCE_INFO_Set(SDLProducer prod){
 		String row;
-		GUIPrimaryKey = "vran-cell6";
+		GUIPrimaryKey = "vran-cell1-6";
 
 		row = "{\"cellVmHostName\":\"vran-cell1-6\",\"r1ConsumptionInPercentage\":10}";
         	prod.set(GUIPrimaryKey, row);
@@ -171,6 +174,48 @@ public class SDLActor {
 		row = "{\"cellVmHostName\":\"vran-cell1-6\",\"r1ConsumptionInPercentage\":40,\"r2ConsumptionInPercentage\":40,\"r3ConsumptionInPercentage\":40,\"r4ConsumptionInPercentage\":40,\"r5ConsumptionInPercentage\":40,\"r6ConsumptionInPercentage\":40,\"r7ConsumptionInPercentage\":40,\"r8ConsumptionInPercentage\":40,\"r9ConsumptionInPercentage\":40,\"lastUpdateDate\":" + System.currentTimeMillis() + ",\"updatedBy\":\"GUI\"}";
         	prod.set(GUIPrimaryKey, row);
         	System.out.println(ANSI_BLUE + "Sent GUI RESOURCE_INFO table with primaryKey=" + GUIPrimaryKey + "and partial row value=" + row + ANSI_RESET);
+	}
+
+	void MICRO_SERVICES_INFO_Set(SDLProducer prod){
+		String row;
+
+                row = "{\"microserviceId1\":\""+microserviceId1+"\",\"status\":\"RUNNING\",\"startDate\":"+ System.currentTimeMillis() + "}";
+		prod.set(microserviceId1, row);
+                System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId1 + " and partial row value=" + row + ANSI_RESET);
+
+		try{Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
+                row = "{\"microserviceId1\":\""+microserviceId1+"\",\"status\":\"STOPPED\"}";
+		prod.set(microserviceId1, row);
+                System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId1 + " and partial row value=" + row + ANSI_RESET);
+                row = "{\"microserviceId2\":\""+microserviceId2+"\",\"status\":\"RUNNING\",\"startDate\":"+ System.currentTimeMillis() + "}";
+		prod.set(microserviceId2, row);
+                System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId2 + " and partial row value=" + row + ANSI_RESET);
+
+		try{Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
+                row = "{\"microserviceId1\":\""+microserviceId1+"\",\"microServiceOrchProvider\":\"Swarm\",\"microServiceName\":\"BBSC\",\"sourcePortNo\":51345,\"chainingPortRange\":1024,\"sourceIpAddress\":\"172.1.0.15\",\"status\":\"NOT_CREATED\",\"deployedServer\":\"FEU\",\"startDate\":"+ System.currentTimeMillis() + "}";
+		prod.set(microserviceId1, row);
+                System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId1 + " and full row value=" + row + ANSI_RESET);
+
+		try{Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
+                row = "{\"microserviceId1\":\""+microserviceId1+"\",\"status\":\"CREATED\"}";
+		prod.set(microserviceId1, row);
+                System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId1 + " and partial row value=" + row + ANSI_RESET);
+
+               	try{Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
+                row = "{\"microserviceId1\":\""+microserviceId1+"\",\"status\":\"RUNNING\",\"startDate\":"+ System.currentTimeMillis() + "}";
+		prod.set(microserviceId1, row);
+                System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId1 + " and partial row value=" + row + ANSI_RESET);
+                row = "{\"microserviceId2\":\""+microserviceId2+"\",\"status\":\"STOPPED\"}";
+		prod.set(microserviceId2, row);
+                System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId2 + " and partial row value=" + row + ANSI_RESET);
+
+               	try{Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
+                row = "{\"microserviceId1\":\""+microserviceId1+"\",\"status\":\"STOPPED\"}";
+		prod.set(microserviceId1, row);
+                System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId1 + " and partial row value=" + row + ANSI_RESET);
+                row = "{\"microserviceId2\":\""+microserviceId2+"\",\"status\":\"RUNNING\",\"startDate\":"+ System.currentTimeMillis() + "}";
+		prod.set(microserviceId2, row);
+                System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId2 + " and partial row value=" + row + ANSI_RESET);
 	}
 
 	void set(){
@@ -192,55 +237,15 @@ public class SDLActor {
 		RESOURCE_INFO_Producer.start();
                 MICRO_SERVICES_INFO_Producer.start();
 
-		String row;
 	        long start=System.currentTimeMillis();
                 while((0 >= testDuration) || (System.currentTimeMillis() - start < testDuration)){
-			UI_NS_VNF_ORCHESTRATION_Set(UI_NS_VNF_ORCHESTRATION_Producer);
-			UI_NS_VNC_SETTING_Set(UI_NS_VNC_SETTING_Producer);
-			UI_SS_TRAFFIC_PROFILE_Set(UI_SS_TRAFFIC_PROFILE_Producer);
-			UI_CONTROL_SCREEN_SETTINGS_Set(UI_CONTROL_SCREEN_SETTINGS_Producer);
-			CELL_VM_INFO_Set(CELL_VM_INFO_Producer);
-			RESOURCE_INFO_Set(RESOURCE_INFO_Producer);
-
-        
-                row = "{\"microserviceId1\":\""+microserviceId1+"\",\"status\":\"RUNNING\",\"startDate\":"+ System.currentTimeMillis() + "}";
-		MICRO_SERVICES_INFO_Producer.set(microserviceId1, row);
-                System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId1 + " and partial row value=" + row + ANSI_RESET);
-
-		try{Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
-                row = "{\"microserviceId1\":\""+microserviceId1+"\",\"status\":\"STOPPED\"}";
-		MICRO_SERVICES_INFO_Producer.set(microserviceId1, row);
-                System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId1 + " and partial row value=" + row + ANSI_RESET);
-                row = "{\"microserviceId2\":\""+microserviceId2+"\",\"status\":\"RUNNING\",\"startDate\":"+ System.currentTimeMillis() + "}";
-		MICRO_SERVICES_INFO_Producer.set(microserviceId2, row);
-                System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId2 + " and partial row value=" + row + ANSI_RESET);
-
-		try{Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
-                row = "{\"microserviceId1\":\""+microserviceId1+"\",\"microServiceOrchProvider\":\"Swarm\",\"microServiceName\":\"BBSC\",\"sourcePortNo\":51345,\"chainingPortRange\":1024,\"sourceIpAddress\":\"172.1.0.15\",\"status\":\"NOT_CREATED\",\"deployedServer\":\"FEU\",\"startDate\":"+ System.currentTimeMillis() + "}";
-		MICRO_SERVICES_INFO_Producer.set(microserviceId1, row);
-                System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId1 + " and full row value=" + row + ANSI_RESET);
-
-		try{Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
-                row = "{\"microserviceId1\":\""+microserviceId1+"\",\"status\":\"CREATED\"}";
-		MICRO_SERVICES_INFO_Producer.set(microserviceId1, row);
-                System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId1 + " and partial row value=" + row + ANSI_RESET);
-
-               	try{Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
-                row = "{\"microserviceId1\":\""+microserviceId1+"\",\"status\":\"RUNNING\",\"startDate\":"+ System.currentTimeMillis() + "}";
-		MICRO_SERVICES_INFO_Producer.set(microserviceId1, row);
-                System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId1 + " and partial row value=" + row + ANSI_RESET);
-                row = "{\"microserviceId2\":\""+microserviceId2+"\",\"status\":\"STOPPED\"}";
-		MICRO_SERVICES_INFO_Producer.set(microserviceId2, row);
-                System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId2 + " and partial row value=" + row + ANSI_RESET);
-
-
-               	try{Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
-                row = "{\"microserviceId1\":\""+microserviceId1+"\",\"status\":\"STOPPED\"}";
-		MICRO_SERVICES_INFO_Producer.set(microserviceId1, row);
-                System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId1 + " and partial row value=" + row + ANSI_RESET);
-                row = "{\"microserviceId2\":\""+microserviceId2+"\",\"status\":\"RUNNING\",\"startDate\":"+ System.currentTimeMillis() + "}";
-		MICRO_SERVICES_INFO_Producer.set(microserviceId2, row);
-                System.out.println(ANSI_BLUE + "Sent Swarm MICRO_SERVICES_INFO table with primaryKey="+ microserviceId2 + " and partial row value=" + row + ANSI_RESET);	
+			if(topic.equalsIgnoreCase("All") | topic.equalsIgnoreCase("UI_NS_VNF_ORCHESTRATION")) UI_NS_VNF_ORCHESTRATION_Set(UI_NS_VNF_ORCHESTRATION_Producer);
+			if(topic.equalsIgnoreCase("All") | topic.equalsIgnoreCase("UI_NS_VNC_SETTING")) UI_NS_VNC_SETTING_Set(UI_NS_VNC_SETTING_Producer);
+			if(topic.equalsIgnoreCase("All") | topic.equalsIgnoreCase("UI_SS_TRAFFIC_PROFILE")) UI_SS_TRAFFIC_PROFILE_Set(UI_SS_TRAFFIC_PROFILE_Producer);
+			if(topic.equalsIgnoreCase("All") | topic.equalsIgnoreCase("UI_CONTROL_SCREEN_SETTINGS")) UI_CONTROL_SCREEN_SETTINGS_Set(UI_CONTROL_SCREEN_SETTINGS_Producer);
+			if(topic.equalsIgnoreCase("All") | topic.equalsIgnoreCase("CELL_VM_INFO")) CELL_VM_INFO_Set(CELL_VM_INFO_Producer);
+			if(topic.equalsIgnoreCase("All") | topic.equalsIgnoreCase("RESOURCE_INFO")) RESOURCE_INFO_Set(RESOURCE_INFO_Producer);
+			if(topic.equalsIgnoreCase("All") | topic.equalsIgnoreCase("MICRO_SERVICES_INFO")) MICRO_SERVICES_INFO_Set(MICRO_SERVICES_INFO_Producer);
 		}
 
 		// Finish Producers threads
@@ -269,6 +274,8 @@ public class SDLActor {
 		// During a loop, each seconds Get value of a table with its primaryKey
 		long start=System.currentTimeMillis();
         	while((0 >= testDuration) || (System.currentTimeMillis() - start < testDuration)){
+
+			if(topic.equalsIgnoreCase("All") | topic.equalsIgnoreCase("UI_NS_VNF_ORCHESTRATION"))
 			try{
 				GUIPrimaryKey = "0";
 				System.out.printf(ANSI_GREEN + "GUIPrimaryKey=%s, row=%s\n" + ANSI_RESET, GUIPrimaryKey, UI_NS_VNF_ORCHESTRATION_Consumer.get(GUIPrimaryKey));
@@ -276,6 +283,8 @@ public class SDLActor {
 			catch (Exception e) {
                         	e.printStackTrace();
                 	}
+
+			if(topic.equalsIgnoreCase("All") | topic.equalsIgnoreCase("CELL_VM_INFO"))
  			try{
 				 GUIPrimaryKey = "vran-cell1-6";
 				System.out.printf(ANSI_GREEN + "GUIPrimaryKey=%s, row=%s\n" + ANSI_RESET, GUIPrimaryKey, CELL_VM_INFO_Consumer.get(GUIPrimaryKey));
@@ -283,6 +292,8 @@ public class SDLActor {
 			catch (Exception e) {
                         	e.printStackTrace();
                 	}
+
+			if(topic.equalsIgnoreCase("All") | topic.equalsIgnoreCase("RESOURCE_INFO"))
  			try{
 				 GUIPrimaryKey = "vran-cell1-6";
 				System.out.printf(ANSI_GREEN + "GUIPrimaryKey=%s, row=%s\n" + ANSI_RESET, GUIPrimaryKey, RESOURCE_INFO_Consumer.get(GUIPrimaryKey));
@@ -290,6 +301,8 @@ public class SDLActor {
 			catch (Exception e) {
                         	e.printStackTrace();
                 	}
+
+			if(topic.equalsIgnoreCase("All") | topic.equalsIgnoreCase("MICRO_SERVICES_INFO"))
                 	try{
                         	System.out.printf(ANSI_GREEN + "microserviceId1=%s, row=%s\n" + ANSI_RESET, microserviceId1, MICRO_SERVICES_INFO_Consumer.get(microserviceId1));
                 	}
@@ -297,6 +310,7 @@ public class SDLActor {
                         	e.printStackTrace();
                 	}
 
+			if(topic.equalsIgnoreCase("All") | topic.equalsIgnoreCase("MICRO_SERVICES_INFO"))
                 	try{
                         	System.out.printf(ANSI_GREEN + "microserviceId2=%s, row=%s\n" + ANSI_RESET, microserviceId2, MICRO_SERVICES_INFO_Consumer.get(microserviceId2));
                 	}

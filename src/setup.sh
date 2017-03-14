@@ -53,10 +53,10 @@ javac -cp "$KAFKA_HOME/libs/*" SDLActor.java
 echo -e "${LightGreen}######################################################################${NC}"
 echo -e "${LightGreen}  Launch a SDL Actor that gets GUI and Swarm Rows during 1:30 min${NC}"
 echo -e "${LightGreen}######################################################################${NC}"
-java -cp ".:$KAFKA_HOME/libs/*" SDLActor $IPADDR get 90 &
+java -cp ".:$KAFKA_HOME/libs/*" SDLActor $IPADDR get 90 All &
 
 echo -e "${LightBlue}######################################################################${NC}"
 echo -e "${LightBlue}  Launch a SDL Actor that sends GUI and 2 Swarm Tables during 1 min${NC}"
 echo -e "${LightBlue}######################################################################${NC}"
-java -cp ".:$KAFKA_HOME/libs/*" SDLActor $IPADDR set 60 &
+java -cp ".:$KAFKA_HOME/libs/*" SDLActor $IPADDR set 60 All &
 

@@ -6,6 +6,7 @@ ProductID   :	_ProductID
 From Date   :	_Date
 
 What's New:
+- Based on Table definition v24
 - Added Java SDL Client API
 - Added Java SDLActor that can Set and Get Json Table Rows for GUI and Swarm Tables
 
