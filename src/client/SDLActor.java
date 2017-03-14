@@ -158,7 +158,7 @@ public class SDLActor {
         	System.out.println(ANSI_BLUE + "Sent GUI CELL_VM_INFO table with primaryKey=" + GUIPrimaryKey + "and full row value=" + row + ANSI_RESET);
 
         	try{Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
-        	row = "{\"cellVmHostName\":\"vran-cell1-6\"{\"CellB\":[{\"fzmName\":\"FZM1\",\"numConnectedUE\":80,\"lastUpdateDate\":" + System.currentTimeMillis() + "}]}}";
+        	row = "{\"cellVmHostName\":\"vran-cell1-6\":{\"CellB\":[{\"fzmName\":\"FZM1\",\"numConnectedUE\":80,\"lastUpdateDate\":" + System.currentTimeMillis() + "}]}}";
         	prod.set(GUIPrimaryKey, row);
         	System.out.println(ANSI_BLUE + "Sent GUI CELL_VM_INFO table with primaryKey=" + GUIPrimaryKey + "and partial row value=" + row + ANSI_RESET);
 	}
