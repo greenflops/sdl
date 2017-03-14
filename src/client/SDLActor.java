@@ -256,11 +256,11 @@ public class SDLActor {
 	void get(){
 		// Create Consumers threads
 		SDLConsumer UI_NS_VNF_ORCHESTRATION_Consumer = new SDLConsumer(address, UI_NS_VNF_ORCHESTRATION);
-		SDLProducer CELL_VM_INFO_Consumer = new SDLConsumer(address, CELL_VM_INFO);
-		SDLProducer RESOURCE_INFO_Consumer = new SDLConsumer(address, RESOURCE_INFO);
+		SDLConsumer CELL_VM_INFO_Consumer = new SDLConsumer(address, CELL_VM_INFO);
+		SDLConsumer RESOURCE_INFO_Consumer = new SDLConsumer(address, RESOURCE_INFO);
                 SDLConsumer MICRO_SERVICES_INFO_Consumer = new SDLConsumer(address, MICRO_SERVICES_INFO);
 
-		// Run Consumers polling
+		// Run Consumers polling:wq
         	UI_NS_VNF_ORCHESTRATION_Consumer.start();
 		CELL_VM_INFO_Consumer.start();
 		RESOURCE_INFO_Consumer.start();
