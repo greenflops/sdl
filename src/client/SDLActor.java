@@ -42,7 +42,7 @@ public class SDLActor {
 
     	public static void main(String[] args) throws Exception {
 		SDLActor sdl = new SDLActor();
-        	if(args.length != 3) {
+        	if(args.length != 4) {
             		System.out.println("enter [brockerIPAddress | localhost] [set | get] [durationInSeconds | -1 for infinite] [TOPIC | All for all topics]");
             		return;
         	}
