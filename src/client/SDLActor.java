@@ -162,7 +162,7 @@ public class SDLActor {
 
 	void RESOURCE_INFO_Set(SDLProducer prod){
 		String row;
-		GUIPrimaryKey = "vran-cell1-6";
+		GUIPrimaryKey = "vran-cell6";
 
 		row = "{\"cellVmHostName\":\"vran-cell1-6\",\"r1ConsumptionInPercentage\":10}";
         	prod.set(GUIPrimaryKey, row);
@@ -171,7 +171,6 @@ public class SDLActor {
 		row = "{\"cellVmHostName\":\"vran-cell1-6\",\"r1ConsumptionInPercentage\":40,\"r2ConsumptionInPercentage\":40,\"r3ConsumptionInPercentage\":40,\"r4ConsumptionInPercentage\":40,\"r5ConsumptionInPercentage\":40,\"r6ConsumptionInPercentage\":40,\"r7ConsumptionInPercentage\":40,\"r8ConsumptionInPercentage\":40,\"r9ConsumptionInPercentage\":40,\"lastUpdateDate\":" + System.currentTimeMillis() + ",\"updatedBy\":\"GUI\"}";
         	prod.set(GUIPrimaryKey, row);
         	System.out.println(ANSI_BLUE + "Sent GUI RESOURCE_INFO table with primaryKey=" + GUIPrimaryKey + "and partial row value=" + row + ANSI_RESET);
-
 	}
 
 	void set(){
@@ -246,22 +245,47 @@ public class SDLActor {
 
 		// Finish Producers threads
                 UI_NS_VNF_ORCHESTRATION_Producer.finish();
+		UI_NS_VNC_SETTING_Producer.finish();
+		UI_SS_TRAFFIC_PROFILE_Producer.finish();
+		UI_CONTROL_SCREEN_SETTINGS_Producer.finish();
+		CELL_VM_INFO_Producer.finish();
+		RESOURCE_INFO_Producer.finish();
                 MICRO_SERVICES_INFO_Producer.finish();
 	}
 
 	void get(){
 		// Create Consumers threads
 		SDLConsumer UI_NS_VNF_ORCHESTRATION_Consumer = new SDLConsumer(address, UI_NS_VNF_ORCHESTRATION);
+		SDLProducer CELL_VM_INFO_Consumer = new SDLConsumer(address, CELL_VM_INFO);
+		SDLProducer RESOURCE_INFO_Consumer = new SDLConsumer(address, RESOURCE_INFO);
                 SDLConsumer MICRO_SERVICES_INFO_Consumer = new SDLConsumer(address, MICRO_SERVICES_INFO);
+
 		// Run Consumers polling
         	UI_NS_VNF_ORCHESTRATION_Consumer.start();
+		CELL_VM_INFO_Consumer.start();
+		RESOURCE_INFO_Consumer.start();
 		MICRO_SERVICES_INFO_Consumer.start();
 		
 		// During a loop, each seconds Get value of a table with its primaryKey
 		long start=System.currentTimeMillis();
         	while((0 >= testDuration) || (System.currentTimeMillis() - start < testDuration)){
 			try{
+				GUIPrimaryKey = "0";
 				System.out.printf(ANSI_GREEN + "GUIPrimaryKey=%s, row=%s\n" + ANSI_RESET, GUIPrimaryKey, UI_NS_VNF_ORCHESTRATION_Consumer.get(GUIPrimaryKey));
+			}
+			catch (Exception e) {
+                        	e.printStackTrace();
+                	}
+ 			try{
+				 GUIPrimaryKey = "vran-cell1-6";
+				System.out.printf(ANSI_GREEN + "GUIPrimaryKey=%s, row=%s\n" + ANSI_RESET, GUIPrimaryKey, CELL_VM_INFO_Consumer.get(GUIPrimaryKey));
+			}
+			catch (Exception e) {
+                        	e.printStackTrace();
+                	}
+ 			try{
+				 GUIPrimaryKey = "vran-cell1-6";
+				System.out.printf(ANSI_GREEN + "GUIPrimaryKey=%s, row=%s\n" + ANSI_RESET, GUIPrimaryKey, RESOURCE_INFO_Consumer.get(GUIPrimaryKey));
 			}
 			catch (Exception e) {
                         	e.printStackTrace();
@@ -278,11 +302,13 @@ public class SDLActor {
                 	}
                 	catch (Exception e) {
                         	e.printStackTrace();
-                	}	
+                	}
 			try{Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
          	}
 		// Finish Consumers threads
 		UI_NS_VNF_ORCHESTRATION_Consumer.finish();
+		CELL_VM_INFO_Consumer.finish();
+		RESOURCE_INFO_Consumer.finish();
 		MICRO_SERVICES_INFO_Consumer.finish();
     	}
 }
