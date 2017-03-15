@@ -148,17 +148,17 @@ public class SDLActor {
 		String row;
 		GUIPrimaryKey = "vran-cell1-6";
 
-        	row = "{\"cellVmHostName\":{\"vran-cell1-6\":[{\"fzmName\":\"FZM1\",\"numConnectedUE\":0,\"lastUpdateDate\":" + System.currentTimeMillis() + "}]}}";
+        	row = "[{\"FZM1\":{\"numConnectedUE\":0,\"lastUpdateDate\":" + System.currentTimeMillis() + "}}]";
         	prod.set(GUIPrimaryKey, row);
         	System.out.println(ANSI_BLUE + "Sent GUI CELL_VM_INFO table with primaryKey=" + GUIPrimaryKey + "and partial row value=" + row + ANSI_RESET);
 
         	try{Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
-        	row = "{\"cellVmHostName\":{\"vran-cell1-6\":[{\"fzmName\":\"FZM1\",\"numConnectedUE\":10,\"meanAppLatency\":1.5,\"meanAggThroughput\":1.0,\"poolUtilPercentage\":10,\"lastUpdateDate\":" + System.currentTimeMillis() + ",\"updatedBy\":\"GUI\"},{\"fzmName\":\"FZM2\",\"numConnectedUE\":20,\"meanAppLatency\":2.5,\"meanAggThroughput\":20.0,\"poolUtilPercentage\":20,\"lastUpdateDate\":" + System.currentTimeMillis() + ",\"updatedBy\":\"GUI\"},{\"fzmName\":\"FZM3\",\"numConnectedUE\":30,\"meanAppLatency\":3.5,\"meanAggThroughput\":30.0,\"poolUtilPercentage\":30,\"lastUpdateDate\":" + System.currentTimeMillis() + ",\"updatedBy\":\"GUI\"},{\"fzmName\":\"FZM4\",\"numConnectedUE\":40,\"meanAppLatency\":4.5,\"meanAggThroughput\":40.0,\"poolUtilPercentage\":40,\"lastUpdateDate\":" + System.currentTimeMillis() + ",\"updatedBy\":\"GUI\"},{\"fzmName\":\"FZM5\",\"numConnectedUE\":50,\"meanAppLatency\":5.5,\"meanAggThroughput\":50.0,\"poolUtilPercentage\":50,\"lastUpdateDate\":" + System.currentTimeMillis() + ",\"updatedBy\":\"GUI\"},{\"fzmName\":\"FZM6\",\"numConnectedUE\":60,\"meanAppLatency\":6.5,\"meanAggThroughput\":60.0,\"poolUtilPercentage\":60,\"lastUpdateDate\":" + System.currentTimeMillis() + ",\"updatedBy\":\"GUI\"}]}}";
+        	row = "[{\"FZM1\":{\"numConnectedUE\":10,\"meanAppLatency\":1.5,\"meanAggThroughput\":1.0,\"poolUtilPercentage\":10,\"lastUpdateDate\":" + System.currentTimeMillis() + ",\"updatedBy\":\"GUI\"}},{\"FZM2\":{\"numConnectedUE\":20,\"meanAppLatency\":2.5,\"meanAggThroughput\":20.0,\"poolUtilPercentage\":20,\"lastUpdateDate\":" + System.currentTimeMillis() + ",\"updatedBy\":\"GUI\"}},{\"FZM3\":{\"numConnectedUE\":30,\"meanAppLatency\":3.5,\"meanAggThroughput\":30.0,\"poolUtilPercentage\":30,\"lastUpdateDate\":" + System.currentTimeMillis() + ",\"updatedBy\":\"GUI\"}},{\"FZM4\":{\"numConnectedUE\":40,\"meanAppLatency\":4.5,\"meanAggThroughput\":40.0,\"poolUtilPercentage\":40,\"lastUpdateDate\":" + System.currentTimeMillis() + ",\"updatedBy\":\"GUI\"}},{\"FZM5\":{\"numConnectedUE\":50,\"meanAppLatency\":5.5,\"meanAggThroughput\":50.0,\"poolUtilPercentage\":50,\"lastUpdateDate\":" + System.currentTimeMillis() + ",\"updatedBy\":\"GUI\"}},{\"FZM6\":{\"numConnectedUE\":60,\"meanAppLatency\":6.5,\"meanAggThroughput\":60.0,\"poolUtilPercentage\":60,\"lastUpdateDate\":" + System.currentTimeMillis() + ",\"updatedBy\":\"GUI\"}}]";
         	prod.set(GUIPrimaryKey, row);
         	System.out.println(ANSI_BLUE + "Sent GUI CELL_VM_INFO table with primaryKey=" + GUIPrimaryKey + "and full row value=" + row + ANSI_RESET);
 
         	try{Thread.sleep(1000);}catch(Exception e) {e.printStackTrace();}
-        	row = "{\"cellVmHostName\":{\"vran-cell1-6\":[{\"fzmName\":\"FZM1\",\"numConnectedUE\":80,\"lastUpdateDate\":" + System.currentTimeMillis() + "}]}}";
+        	row = "[{\"FZM1\":{\"numConnectedUE\":80,\"lastUpdateDate\":" + System.currentTimeMillis() + "}}]";
         	prod.set(GUIPrimaryKey, row);
         	System.out.println(ANSI_BLUE + "Sent GUI CELL_VM_INFO table with primaryKey=" + GUIPrimaryKey + "and partial row value=" + row + ANSI_RESET);
 	}
